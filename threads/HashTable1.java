@@ -1,24 +1,15 @@
 package nachos.threads;
 
-public class HashTable1 {
-	public HashTable1(int n_bucket){
-		KVPair[] hash= new KVPair[n_bucket];
-		for (int i=0;i<n_bucket;i++){
-			hash[i]= new KVPair();
-		}
-	}
-	
 
-}
-class KVPair {
+class kvPair {
 	private String k; 
 	private int v;
-	private KVPair next; 
-	KVPair(){
+	private kvPair next; 
+	kvPair(){
 		
 	}
 
-	KVPair(String key, int value) {
+	kvPair(String key, int value) {
 		k = key;
 		v = value;
 		next = null;
@@ -29,7 +20,7 @@ class KVPair {
 	String getKey() {
 		return k;
 	}
-	KVPair getNext() {
+	kvPair getNext() {
 		return next;
 	}
 	void setKey(String key) {
@@ -38,7 +29,21 @@ class KVPair {
 	void setValue(int value) {
 		v = value;
 	}
-	void setNext(KVPair n) {
+	void setNext(kvPair n) {
 		next = n;
 	}
+}
+public class HashTable1 {
+	private Lock[] lockArray;// create an array of lock 
+	private kvPair[] hash;
+	public HashTable1(int n_bucket){
+		hash= new kvPair[n_bucket];
+		lockArray= new Lock[n_bucket];
+		for (int i=0;i<n_bucket;i++){
+			lockArray[i]= new Lock();
+			hash[i]= new kvPair();
+		}
+	}
+	
+
 }
